@@ -1,9 +1,10 @@
-import Home from './pages/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { configureStore } from '@reduxjs/toolkit';
+import { ThemeProvider } from '@mui/material/styles';
+// @ts-ignore
+import theme from './theme';
 import artistReducer from './features/artistSlice';
-
+import NavTab from './components/NavTab';
 
 const store = configureStore({
   reducer: {
@@ -13,11 +14,13 @@ const store = configureStore({
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+    <>
+        <ThemeProvider theme={theme}>
+        <div className="w-screen h-screen bg-gray-900 text-white">
+          <NavTab />
+          </div>
+        </ThemeProvider>
+    </>
   );
 }
 
